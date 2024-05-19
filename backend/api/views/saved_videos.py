@@ -60,8 +60,8 @@ def delete_saved_video(saved_video_id):
 
 @api_views.route('/users/<user_id>/saved_videos', methods=['POST'],
                  strict_slashes=False)
-@swag_from('documentation/saved_videos/post_video.yml', methods=['POST'])
-def post_video(user_id):
+@swag_from('documentation/saved_videos/post_saved_video.yml', methods=['POST'])
+def post_saved_video(user_id):
     """
     Creates a SavedVideo
     """

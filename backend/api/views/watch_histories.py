@@ -12,7 +12,7 @@ from flasgger.utils import swag_from
                  strict_slashes=False)
 @swag_from('documentation/watch_history/watch_history_by_user.yml',
            methods=['GET'])
-def get_watch_history(user_id):
+def get_watch_histories(user_id):
     """
     Retrieves the list of all watch_history objects
     of a specific User, or a specific watch_history
@@ -61,8 +61,9 @@ def delete_watch_history(watch_history_id):
 
 @api_views.route('/users/<user_id>/watch_history', methods=['POST'],
                  strict_slashes=False)
-@swag_from('documentation/watch_history/post_video.yml', methods=['POST'])
-def post_video(user_id):
+@swag_from('documentation/watch_history/post_video_history.yml',
+           methods=['POST'])
+def post_video_history(user_id):
     """
     Creates a WatchHistoty
     """
