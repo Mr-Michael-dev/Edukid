@@ -13,9 +13,9 @@ classes = {"BaseModel": BaseModel, "WatchHistory": WatchHistory,
            "SavedVideos": SavedVideos, "User": User}
 
 
-class HBNBCommand(cmd.Cmd):
+class EDUKIDCommand(cmd.Cmd):
     """ HBNH console """
-    prompt = '(hbnb) '
+    prompt = '(edukid) '
 
     def do_EOF(self, arg):
         """Exits console"""
@@ -157,4 +157,4 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    EDUKIDCommand().cmdloop()

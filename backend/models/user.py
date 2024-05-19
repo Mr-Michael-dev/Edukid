@@ -16,8 +16,8 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
-        saved_video = relationship("saved_videos", backref="user")
-        watch_history = relationship("watch_history", backref="user")
+        saved_video = relationship("SavedVideos", backref="user")
+        watch_history = relationship("WatchHistory", backref="user")
     else:
         email = ""
         password = ""

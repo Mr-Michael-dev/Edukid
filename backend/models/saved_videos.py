@@ -9,7 +9,7 @@ class SavedVideos(BaseModel, Base):
     """Representation of SavedVideos """
     if models.storage_t == 'db':
         __tablename__ = 'saved_videos'
-        user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+        user_id = Column(String(60), ForeignKey('User.id'), nullable=False)
         video_id = Column(String(60), nullable=False)
         video_url = Column(String(60), nullable=False)
         title = Column(String(128), nullable=False)
