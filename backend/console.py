@@ -4,9 +4,9 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
 from models.saved_videos import SavedVideos
 from models.watch_history import WatchHistory
-from models.user import User
 import shlex  # for splitting the line along spaces except in double quotes
 
 classes = {"BaseModel": BaseModel, "WatchHistory": WatchHistory,

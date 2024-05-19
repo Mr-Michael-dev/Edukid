@@ -5,9 +5,9 @@ Contains the class DBStorage
 
 import models
 from models.base_model import BaseModel, Base
+from models.user import User
 from models.saved_videos import SavedVideos
 from models.watch_history import WatchHistory
-from models.user import User
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
