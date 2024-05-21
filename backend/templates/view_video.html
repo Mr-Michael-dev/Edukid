@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Watch Video</title>
+</head>
+<body>
+    <h1>Watch Video</h1>
+    <div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <a href="{{ url_for('web_routes.index') }}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Edukid</title>
+</head>
+<body>
+    <h1>EDUKID</h1>
+    <form method="get">
+        <input type="text" name="query" placeholder="Search for videos">
+        <button type="submit">Search</button>
+    </form>
+    <div>
+        {% if videos %}
+            {% for video in videos %}
+                <div>
+                    <h2>{{ video.title }}</h2>
+                
+                    <a href="{{ url_for('web_routes.view_video', video_id=video.video_id) }}"><img src="{{ video.thumbnail }}" alt="{{ video.title }}"></a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No videos found for the search query.</p>
+        {% endif %}
+    </div>
+    <a href="{{ url_for('web_routes.index') }}">Home</a>
+</body>
+</html>
+

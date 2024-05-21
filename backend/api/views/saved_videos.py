@@ -27,7 +27,7 @@ def get_saved_videos(user_id):
     return jsonify(list_saved_videos)
 
 
-@api_views.route('/saved_videos/<saved_video_id>/',
+@api_views.route('/get_saved_videos/<saved_video_id>/',
                  methods=['GET'], strict_slashes=False)
 @swag_from('documentation/saved_videos/get_saved_video.yml', methods=['GET'])
 def get_saved_video(saved_video_id):
@@ -40,7 +40,7 @@ def get_saved_video(saved_video_id):
     return jsonify(saved_videos.to_dict())
 
 
-@api_views.route('/saved_videos/<saved_video_id>',
+@api_views.route('/get_saved_videos/<saved_video_id>',
                  methods=['DELETE'], strict_slashes=False)
 @swag_from('documentation/saved_videos/delete_saved_video.yml',
            methods=['DELETE'])

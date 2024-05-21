@@ -4,6 +4,7 @@ entry point of my flask app
 """
 from models import storage
 from api.views import api_views
+from web_routes import web_routes
 from flask import Flask, make_response, jsonify
 from flask_cors import CORS
 from flasgger import Swagger
@@ -11,6 +12,7 @@ from flasgger import Swagger
 app = Flask("__name__")
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(api_views)
+app.register_blueprint(web_routes)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['SWAGGER'] = {
     'title': 'Edukid API',
@@ -35,4 +37,4 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
