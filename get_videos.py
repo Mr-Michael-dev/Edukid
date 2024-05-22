@@ -31,7 +31,7 @@ def get_videos(query):
             'title': video['snippet']['title'],
             'video_id': video['id']['videoId'],
             'description': video['snippet']['description'],
-            'thumbnail': video['snippet']['thumbnails']['default']['url']
+            'thumbnail': video['snippet']['thumbnails']['medium']['url']
         } for video in videos]
     except HttpError as e:
         print(f"Error fetching videos")

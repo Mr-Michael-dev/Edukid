@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+body .navbar {
+    background-color: #f8f9fa;
+}
+.navbar-left {
+    width: 100px !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding-top: 56px !important; /* Adjust for header height */
+    z-index: 1030 !important;
+}
+
+.navbar-bottom {
+    width: 100% !important;
+    height: 60px !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    display: none;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 1030 !important; /* Ensure it stays on top of main content */
+}
+.content {
+    margin-left: 100px;
+    padding: 15px;
+    padding-top: 27px; /* Adjust for header height */
+}
+@media (max-width: 767.98px) {
+    .navbar-left {
+        display: none;
+    }
+    .navbar-bottom {
+        display: flex;
+    }
+    .content {
+        margin-left: 0;
+        padding-top: 56px; /* Adjust for header height */
+        margin-bottom: 60px; /* Adjust for bottom navbar height */
+    }
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1040; /* Ensure it stays above side navbar */
+}
+main {
+    padding-top: 56px; /* Adjust for header height */
+}
