@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""get videos from YouTube"""
 import os
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -13,6 +15,9 @@ YOUTUBE_API_VERSION = 'v3'
 
 
 def get_videos(query):
+    """
+    Returns a list of videos based on a query
+    """
     try:
         youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
                         developerKey=DEVELOPER_KEY)
@@ -22,7 +27,7 @@ def get_videos(query):
             q=query,
             type='video',
             #order='viewCount',
-            maxResults=10  # Limit the number of results
+            maxResults=30  # Limit the number of results
         ).execute()
 
         videos = response.get('items', [])

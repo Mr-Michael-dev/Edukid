@@ -14,4 +14,9 @@ def index():
 
 @web_routes.route('/video/<video_id>')
 def view_video(video_id):
-    return render_template('view_video.html', video_id=video_id)
+    videos = get_videos('maths, english for kids')
+    video = next((video for video in videos if video['video_id'] == video_id), None)
+    if video:
+        return render_template('view_video.html', video=video)
+    else:
+        return  render_template('404.html')
