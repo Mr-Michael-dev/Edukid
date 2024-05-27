@@ -16,3 +16,9 @@ SQLAlchemy==2.0.28
 urllib3==2.2.0
 Werkzeug==3.0.2
 google-api-python-client==2.129.0
+flask_login==0.6.3
+google-api-core==2.19.0
+google-api-python-client==2.129.0
+google-auth==2.29.0
+google-auth-httplib2==0.2.0
+googleapis-common-protos==1.63.0

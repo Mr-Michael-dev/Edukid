@@ -11,13 +11,15 @@ class WatchHistory(BaseModel, Base):
         __tablename__ = 'watch_history'
         user_id = Column(String(60), ForeignKey('user.id'), nullable=False)
         video_id = Column(String(60), nullable=False)
-        video_url = Column(String(60), nullable=False)
-        title = Column(String(128), nullable=False)
+        video_url = Column(String(200), nullable=True)
+        title = Column(String(200), nullable=False)
+        thumbnail = Column(String(200), nullable=False)
     else:
         user_id = ""
         video_id = ""
         video_url = ""
         title = ""
+        thumbnail = ""
 
     def __init__(self, *args, **kwargs):
         """initializes Review"""

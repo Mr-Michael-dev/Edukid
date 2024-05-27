@@ -11,15 +11,15 @@ class SavedVideos(BaseModel, Base):
         __tablename__ = 'saved_videos'
         user_id = Column(String(60), ForeignKey('user.id'), nullable=False)
         video_id = Column(String(60), nullable=False)
-        video_url = Column(String(60), nullable=False)
-        title = Column(String(128), nullable=False)
-        description = Column(String(1024), nullable=True)
+        video_url = Column(String(60), nullable=True)
+        title = Column(String(200), nullable=False)
+        thumbnail = Column(String(200), nullable=False)
     else:
         user_id = ""
         video_id = ""
         video_url = ""
         title = ""
-        description = ""
+        thumbnail = ""
 
     def __init__(self, *args, **kwargs):
         """initializes Place"""

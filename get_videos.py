@@ -3,13 +3,9 @@
 import os
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from get_key import get_key
 
-if os.path.isfile('gapikey'):  # Check if gapikey is a valid file
-    with open('gapikey', 'r') as f:  # Open in read mode
-        DEVELOPER_KEY = f.read().strip()  # Read and strip whitespace
-else:
-    print("Error: File '{}' not found.".format('gapikey'))
-
+DEVELOPER_KEY = get_key('gapikey')
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
