@@ -2,11 +2,10 @@
 """defines routes for managing user rgistration and login"""
 from models.user import User
 from models import storage
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from web_routes import web_routes
 from sqlalchemy.exc import IntegrityError
-from ..app import app
 
 
 @web_routes.route('/register', methods=['GET', 'POST'])
@@ -22,7 +21,7 @@ def register():
         try:
             user.save()
         except IntegrityError as e:
-            app.logger.exception(e)
+            current_app.logger.exception(e)
             storage.rollback()
             flash("This username is already in use")
             return redirect(url_for("signup"))

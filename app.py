@@ -10,11 +10,18 @@ from flask import Flask, make_response, jsonify, render_template
 from flask_login import LoginManager
 from flask_cors import CORS
 from flasgger import Swagger
+import logging
 from get_key import get_key
 
 app = Flask("__name__")
 app.config['SECRET_KEY'] = get_key('secret_key')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
+# Configure logging
+handler = logging.StreamHandler()
+handler.setLevel(logging.INFO)
+app.logger.addHandler(handler)
+
 app.register_blueprint(api_views)
 app.register_blueprint(web_routes)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
