@@ -3,14 +3,15 @@
 Contains the class DBStorage
 """
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from models.base_model import Base
 import models
-from models.base_model import BaseModel, Base
 from models.user import User
 from models.saved_videos import SavedVideos
 from models.watch_history import WatchHistory
 from os import getenv
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+
 
 classes = {"WatchHistory": WatchHistory,
            "SavedVideos": SavedVideos, "User": User}
@@ -70,6 +71,10 @@ class DBStorage:
     def close(self):
         """call remove() method on the private session attribute"""
         self.__session.remove()
+
+    def rollback(self):
+        """call rollback() method on the private session attribute"""
+        self.__session.rollback()
 
     def get(self, cls, id):
         """

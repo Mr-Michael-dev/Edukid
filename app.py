@@ -6,7 +6,7 @@ from models import storage
 from models.user import User
 from api.views import api_views
 from web_routes import web_routes
-from flask import Flask, make_response, jsonify
+from flask import Flask, make_response, jsonify, render_template
 from flask_login import LoginManager
 from flask_cors import CORS
 from flasgger import Swagger
@@ -23,6 +23,8 @@ app.config['SWAGGER'] = {
     'uiversion': 1
 }
 Swagger(app)
+
+"""setup login manager"""
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -31,7 +33,12 @@ login_manager.login_message = 'You are logged in'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    """
+    Authenticate users when performing requests via the browser. Authentication
+    management is handled by flask-login.
+    """
+    return User.get_by_id(user_id)
+
 
 @app.teardown_appcontext
 def close_db(error):
@@ -47,6 +54,11 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
+@app.errorhandler(500)
+def server_error(error):
+    """500 error"""
+    return render_template('500.html')
 
 
 if __name__ == "__main__":

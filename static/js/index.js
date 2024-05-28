@@ -18,7 +18,7 @@ $(document).ready(function() {
         var thumbnail = $(this).data('thumbnail');
 
         $.ajax({
-            url: '{{ url_for("save_video") }}',
+            url: '{{ url_for("web_routes.save_video") }}',
             type: 'POST',
             contentType: 'application/json',
             headers: {

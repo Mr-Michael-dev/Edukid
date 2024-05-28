@@ -1,6 +1,8 @@
 body, html {
     height: 100%;
     margin: 0;
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 body .navbar {
     background-color: #f8f9fa;
