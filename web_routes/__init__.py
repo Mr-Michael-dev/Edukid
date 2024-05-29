@@ -9,3 +9,4 @@ from web_routes.index import *
 from web_routes.view_video import *
 #from web_routes.watch_history import *
 from web_routes.saved_videos import *
+from web_routes.profile import *

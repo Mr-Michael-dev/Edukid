@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ route for viewing saved video and saving video"""
+from models import storage
 from flask import render_template, request, jsonify
 from models.saved_videos import SavedVideos
 from web_routes import web_routes
@@ -25,5 +26,5 @@ def save_video():
 @login_required
 def saved_videos():
     """displays saved videos"""
-    saved_videos = SavedVideos.query.filter_by(user_id=current_user.id).all()
+    saved_videos = storage._DBStorage__session.query(SavedVideos).filter_by(user_id=current_user.id).all()
     return render_template('saved_videos.html', videos=saved_videos)

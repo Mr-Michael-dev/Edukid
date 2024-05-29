@@ -42,7 +42,7 @@ def login():
             if user.username == username and  bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
                 flash('You have succesfully logged in!')
                 login_user(user)
-                return redirect(url_for('web_routes.index'))
+                return redirect(url_for('web_routes.user_profile'))
         flash('Invalid credentials')
         return redirect(url_for('web_routes.login'))
     return render_template('login.html')
