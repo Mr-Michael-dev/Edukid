@@ -16,4 +16,4 @@ def user_profile():
     }
 
     saved_videos = storage._DBStorage__session.query(SavedVideos).filter_by(user_id=current_user.id).all()
-    return render_template('profile.html', user=user, saved_videos=saved_videos)
+    return render_template('profile.html', user=user, videos=saved_videos)

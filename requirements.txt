@@ -23,3 +23,5 @@ google-auth==2.29.0
 google-auth-httplib2==0.2.0
 googleapis-common-protos==1.63.0
 flask_migrate==4.0.7
+Flask-WTF==1.2.1
+wtforms==3.1.2
