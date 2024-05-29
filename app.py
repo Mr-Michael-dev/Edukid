@@ -44,7 +44,7 @@ def load_user(user_id):
     Authenticate users when performing requests via the browser. Authentication
     management is handled by flask-login.
     """
-    return User.get_by_id(user_id)
+    return storage._DBStorage__session.query(User).get(user_id)
 
 
 @app.teardown_appcontext

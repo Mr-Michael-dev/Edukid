@@ -1,13 +1,17 @@
 from models import storage
 from models.base_model import Base
 
-# Drop all tables
-#storage._DBStorage__engine.execute("DROP DATABASE IF EXISTS edukid_dev_db")
-#storage._DBStorage__engine.execute("CREATE DATABASE edukid_dev_db")
+def reset_database():
+    """Drops all tables and recreates them."""
+    # Drop all tables
+    print("Dropping all tables...")
+    Base.metadata.drop_all(bind=storage._DBStorage__engine)
+    
+    # Create all tables
+    print("Creating all tables...")
+    Base.metadata.create_all(bind=storage._DBStorage__engine)
+    
+    print("Database reset complete.")
 
-# Recreate tables
-#storage.reload()
-
-# Alternatively, you can use Base.metadata.drop_all and create_all
-Base.metadata.drop_all(storage._DBStorage__engine)
-Base.metadata.create_all(storage._DBStorage__engine)
+if __name__ == "__main__":
+    reset_database()
