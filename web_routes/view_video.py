@@ -9,11 +9,13 @@ from flask_login import login_required
 def view_video():
     video_id = request.args.get('video_id')
     title = request.args.get('title')
+    thumbnail = request.args.get('thumbnail')
 
     if video_id and title:
         video = {
             'video_id': video_id,
             'title': title,
+            'thumbnail': thumbnail
         }
         return render_template('view_video.html', video=video)
     else:

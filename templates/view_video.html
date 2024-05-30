@@ -4,11 +4,58 @@
     {{ video.title }} - Edukid
 {% endblock %}
 {% block content %}
-<div class="container mt-5 ">
-    <div class="container ">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen></iframe>
+<div class="container mt-5">
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen></iframe>
     </div>
-    <h3 class="mt-3 fw-semibold">{{ video.title }}</h3>
-    <a href="{{ url_for('web_routes.index') }}">Back to Home</a>
+    <h3 class="mt-3 fw-semibold text-truncate" style="max-width: 100%; overflow: hidden; text-overflow: ellipsis;">{{ video.title }}</h3>
+    <button type="button" class="my-btn" 
+        data-video-id="{{ video.video_id }}" 
+        data-title="{{ video.title }}" 
+        data-thumbnail="{{ video.thumbnail }}">
+        Save
+    </button>
 </div>
+<input type="hidden" id="is-authenticated" value="{{ current_user.is_authenticated }}">
+<script>
+    $(document).ready(function() {
+    var isAuthenticated = $('#is-authenticated').val() === 'True';
+
+    $('.save-button').click(function() {
+        if (!isAuthenticated) {
+            alert('Please log in to save videos.');
+            window.location.href = '{{ url_for("web_routes.login") }}';
+            return;
+        }
+
+        var videoId = $(this).data('video-id');
+        var title = $(this).data('title');
+        var thumbnail = $(this).data('thumbnail');
+
+        $.ajax({
+            url: '{{ url_for("web_routes.save_video") }}',
+            type: 'POST',
+            contentType: 'application/json',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token() }}'  // Ensure you include CSRF token if using Flask-WTF
+            },
+            data: JSON.stringify({
+                video_id: videoId,
+                title: title,
+                thumbnail: thumbnail
+            }),
+            success: function(data) {
+                if (data.success) {
+                    alert('Video saved successfully!');
+                } else {
+                    alert('Failed to save video.');
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+            });
+        });
+    });
+</script>
 {% endblock %}

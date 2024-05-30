@@ -19,15 +19,13 @@
     {% if videos %}
         {% for video in videos %}
             <div class="col-md-6 col-sm-12 col-lg-4 mt-2">
-                <div class="card mb-3" style="width: 100%; height: 22rem;">
-                    <a href="{{ url_for('web_routes.view_video', video_id=video.video_id, title=video.title) }}" class="card-img-top">
+                <div class="card mb-3">
+                    <a href="{{ url_for('web_routes.view_video', video_id=video.video_id, title=video.title, thumbnail=video.thumbnail) }}" class="card-img-top">
                         <img style="width: 100%;" src="{{ video.thumbnail }}" alt="{{ video.title }}">
                     </a>
                     <div class="card-body">
-                        <p class="card-text">{{ video.title }}</p>
-                    </div>
-                    <div class="card-footer m-0">
-                        <button type="button" class="btn btn-primary save-button" 
+                        <p class="card-subtitle">{{ video.title }}</p>
+                        <button type="button" class="my-btn" 
                                 data-video-id="{{ video.video_id }}" 
                                 data-title="{{ video.title }}" 
                                 data-thumbnail="{{ video.thumbnail }}">
