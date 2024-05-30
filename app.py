@@ -12,12 +12,12 @@ from flask_cors import CORS
 from flasgger import Swagger
 import logging
 from get_key import get_key
-from flask_wtf import CSRFProtect
+# from flask_wtf import CSRFProtect
 
 app = Flask("__name__")
 app.config['SECRET_KEY'] = get_key('secret_key')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-csrf = CSRFProtect(app)
+# csrf = CSRFProtect(app)
 
 # Configure logging
 handler = logging.StreamHandler()

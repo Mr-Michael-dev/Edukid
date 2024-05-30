@@ -5,8 +5,8 @@
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen></iframe>
+    <div class="container">
+        <iframe class="vid-frame" src="https://www.youtube.com/embed/{{ video.video_id }}" frameborder="0" allowfullscreen></iframe>
     </div>
     <h3 class="mt-3 fw-semibold text-truncate" style="max-width: 100%; overflow: hidden; text-overflow: ellipsis;">{{ video.title }}</h3>
     <button type="button" class="my-btn" 
@@ -36,9 +36,6 @@
             url: '{{ url_for("web_routes.save_video") }}',
             type: 'POST',
             contentType: 'application/json',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token() }}'  // Ensure you include CSRF token if using Flask-WTF
-            },
             data: JSON.stringify({
                 video_id: videoId,
                 title: title,

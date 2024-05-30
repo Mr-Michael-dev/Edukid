@@ -59,9 +59,6 @@
             url: '{{ url_for("web_routes.save_video") }}',
             type: 'POST',
             contentType: 'application/json',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token() }}'  // Ensure you include CSRF token if using Flask-WTF
-            },
             data: JSON.stringify({
                 video_id: videoId,
                 title: title,
