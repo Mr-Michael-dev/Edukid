@@ -3,6 +3,7 @@
 entry point of my flask app
 """
 from models import storage
+import os
 from models.user import User
 from api.views import api_views
 from web_routes import web_routes
@@ -11,13 +12,26 @@ from flask_login import LoginManager
 from flask_cors import CORS
 from flasgger import Swagger
 import logging
-from get_key import get_key
+from flask_migrate import Migrate
 # from flask_wtf import CSRFProtect
 
 app = Flask("__name__")
-app.config['SECRET_KEY'] = get_key('secret_key')
+app.config['SECRET_KEY'] = os.getenv('EDUKID_SECRET_KEY')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # csrf = CSRFProtect(app)
+
+# # Initialize SQLAlchemy and Flask-Migrate
+# db = SQLAlchemy()
+# db.init_app(app)
+
+# # Use the engine and session from DBStorage
+# storage_instance = storage.DBStorage()
+# storage_instance.reload()
+# app.config['SQLALCHEMY_ENGINE'] = storage_instance._DBStorage__engine
+# app.config['SQLALCHEMY_SESSION'] = storage_instance._DBStorage__session
+
+# migrate = Migrate(app, db)
 
 # Configure logging
 handler = logging.StreamHandler()
@@ -54,6 +68,7 @@ def close_db(error):
     """ Close Storage """
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found(error):
     """ 404 Error
@@ -63,6 +78,7 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
 
 @app.errorhandler(500)
 def server_error(error):

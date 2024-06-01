@@ -3,9 +3,8 @@
 import os
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from get_key import get_key
 
-DEVELOPER_KEY = get_key('gapikey')
+DEVELOPER_KEY = os.getenv('EDUKID_GAPI')
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
