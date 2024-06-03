@@ -8,6 +8,8 @@ from get_videos import get_videos
 @web_routes.route('/', methods=['GET'])
 def index():
     """ render the home page """
-    query ='maths, english for kids'
+    import random
+    SAFE_SEARCH_TERMS = ['kids science', 'animal education for kid', 'kids art', 'english for teens', 'maths for teens']
+    query = random.choice(SAFE_SEARCH_TERMS)
     videos = get_videos(query)
     return render_template('index.html', videos=videos)

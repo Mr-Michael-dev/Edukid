@@ -21,8 +21,9 @@ def get_videos(query):
             part='snippet',
             q=query,
             type='video',
-            #order='viewCount',
-            maxResults=30  # Limit the number of results
+            safeSearch='strict',
+            order='viewCount',
+            maxResults=45  # Limit the number of results
         ).execute()
 
         videos = response.get('items', [])

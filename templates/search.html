@@ -10,12 +10,12 @@
         {% if messages %}
             <p class="flashes">
                 {% for category, message in messages %}
-                    <p class="alert alert-{{ category }} alert-warning mt-3">{{ message }}</p>
+                    <p class="alert alert-{{ category }} alert-danger mt-3">{{ message }}</p>
                 {% endfor %}
             </p>
         {% endif %}
     {% endwith %}
-    <h3 class="mt-3 fw-semibold">Top rated</h3>
+    <h5 class="mt-3 fw-semibold">Search results</h5>
     {% if videos %}
         {% for video in videos %}
             <div class="col-md-6 col-sm-12 col-lg-4 mt-2">

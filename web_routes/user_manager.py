@@ -12,6 +12,7 @@ from sqlalchemy.exc import IntegrityError
 
 @web_routes.route('/register', methods=['GET', 'POST'])
 def register():
+    """register a new user"""
     if request.method == 'POST':
         username = request.form['username']
         full_name = request.form['full_name']
@@ -33,6 +34,7 @@ def register():
 
 @web_routes.route('/login', methods=['GET', 'POST'])
 def login():
+    """login a user"""
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -50,6 +52,7 @@ def login():
 @web_routes.route('/logout')
 @login_required
 def logout():
+    """logout a user"""
     logout_user()
     flash('You are logged out')
     return redirect(url_for('web_routes.index'))

@@ -14,13 +14,11 @@ from flask_cors import CORS
 from flasgger import Swagger
 import logging
 from flask_migrate import Migrate
-# from flask_wtf import CSRFProtect
 
 app = Flask("__name__")
 app.config['SECRET_KEY'] = os.getenv('EDUKID_SECRET_KEY')
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# csrf = CSRFProtect(app)
 
 # Set the SQLAlchemy database URI from environment variables
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://{}:{}@{}/{}'.format(

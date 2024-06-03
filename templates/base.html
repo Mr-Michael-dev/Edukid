@@ -13,9 +13,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://kit.fontawesome.com/your_kit_code.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="/static/js/index.js"></script>
+    <!-- <script src="/static/js/validate_form.js"></script> -->
     <title>{% block title %}Edukid{% endblock %}</title>
     {% endblock %}
 </head>
@@ -25,21 +25,21 @@
         {% block header %}
         <div class="container d-flex justify-content-between align-items-center">
             <div class="d-flex">
-                <a class="navbar-brand me-0" href="#">
+                <a class="navbar-brand me-0" href="{{ url_for('web_routes.index') }}">
                     <img src="/static/images/edukid2-preview.png" alt="Edukid_logo" width="30" height="24" class="d-inline-block align-text-top">
                 </a>
                 <p class="mb-0 mt-3 fw-semibold fs-5">EDUKID</p> 
             </div>
             <button class="search-toggle ms-auto">
-                <img src="https://via.placeholder.com/30" alt="Search Toggle">
+                <i class='bx bx-search fs-3'></i>
             </button>
-            <form class="form-sm my-2 my-lg-2 ml-auto d-md-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="my-btn" type="submit">Search</button>
+            <form method="post" action="{{ url_for('web_routes.search') }}" id="search-form" class="form-sm my-2 my-lg-2 ml-auto d-md-flex">
+                <input class="form-control me-2" type="search" id="search-query" name="search" placeholder="Search video" aria-label="Search">
+                <button id="search-button" class="my-btn" type="submit">Search</button>
             </form>
             <div class="col-auto d-flex align-items-center">
-                <button class="btn btn-light border-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="/static/images/profile_photo.jpg" alt="Profile Picture" width="30" height="30" class="rounded-circle">
+                <button class="" style="border: none; background: none;" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="/static/images/profile_photo.jpg" alt="Profile Picture" width="35" height="35" class="rounded-circle">
                 </button>
                 <div class="dropdown-menu" style="right: 0; left: unset;">
                     {% if current_user.is_authenticated %}
@@ -53,6 +53,10 @@
                 </div>
             </div>
         </div>
+        <form method="post" action="{{ url_for('web_routes.search') }}" id="search-form" class="form-sm my-2 my-lg-2 ml-auto d-md-none form-inline container">
+            <input id="search-query" class="form-control me-2" type="search" name="search video" placeholder="Search" aria-label="Search">
+            <button id="search-button" class="my-btn" type="submit">Search</button>
+        </form>
         {% endblock %}
     </header>
 
@@ -79,8 +83,8 @@
                     <p class="mb-0">Source code <a class="rounded-circle" href="https://github.com/Mr-Michael-dev/Edukid"><i class='bx bxl-github fs-6 text-dark text-bg-light p-1'>Github</i></a></p>
                     <p class="d-flex justify-content-center m-1">
                         Connect 
-                        <a class="rounded-circle mx-3" href="#"><i class='bx bxl-facebook-circle fs-6 text-primary text-bg-light'></i></a>
-                        <a class="rounded-circle" href="#"><i class='bx bxl-twitter fs-6 text-bg-light text-primary'></i></a>
+                        <a class="rounded-circle mx-3" href="https://www.linkedin.com/in/michael-oyedepo/"><i class='bx bxl-linkedin-square fs-5 text-primary'></i></a>
+                        <a class="rounded-circle" href="https://twitter.com/michealoyedepo"><i class='bx bxl-twitter fs-5 text-primary'></i></a>
                     </p>
                 </div>
                 <div class="col-md-6 col-sm-12 mt-md-2">
@@ -99,13 +103,10 @@
      </div>
      {% endblock %}
     {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.search-toggle').on('click', function() {
-                $('.sticky-header .form-inline').toggle();
+                $('.form-inline').toggle();
             });
         });
     </script>
