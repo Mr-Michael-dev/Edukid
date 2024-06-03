@@ -4,6 +4,7 @@ entry point of my flask app
 """
 from models import storage
 import os
+from flask_sqlalchemy import SQLAlchemy
 from models.user import User
 from api.views import api_views
 from web_routes import web_routes
@@ -21,17 +22,18 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # csrf = CSRFProtect(app)
 
-# # Initialize SQLAlchemy and Flask-Migrate
-# db = SQLAlchemy()
-# db.init_app(app)
+# Set the SQLAlchemy database URI from environment variables
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://{}:{}@{}/{}'.format(
+    os.getenv('EDUKID_MYSQL_USER'),
+    os.getenv('EDUKID_MYSQL_PWD'),
+    os.getenv('EDUKID_MYSQL_HOST'),
+    os.getenv('EDUKID_MYSQL_DB')
+)
 
-# # Use the engine and session from DBStorage
-# storage_instance = storage.DBStorage()
-# storage_instance.reload()
-# app.config['SQLALCHEMY_ENGINE'] = storage_instance._DBStorage__engine
-# app.config['SQLALCHEMY_SESSION'] = storage_instance._DBStorage__session
-
-# migrate = Migrate(app, db)
+# Initialize SQLAlchemy and Flask-Migrate
+db = SQLAlchemy(app)
+db.session = storage._DBStorage__session
+migrate = Migrate(app, db)
 
 # Configure logging
 handler = logging.StreamHandler()
