@@ -17,14 +17,16 @@
                     </div>
                 {% endif %}
             {% endwith %}
-            <form method="post" action="{{ url_for('web_routes.login') }}">
+            <form method="post" action="{{ url_for('web_routes.login') }}" id="loginform">
                 <div class="form-group">
                     <label for="age">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter your unique username">
+                    <div class="error"></div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                    <div class="error"></div>
                 </div>
                 <button type="submit" class="my-btn mt-2">Login</button>
             </form>

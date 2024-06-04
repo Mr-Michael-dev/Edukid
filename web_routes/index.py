@@ -9,7 +9,10 @@ from get_videos import get_videos
 def index():
     """ render the home page """
     import random
-    SAFE_SEARCH_TERMS = ['kids science', 'animal education for kid', 'kids art', 'english for teens', 'maths for teens']
-    query = random.choice(SAFE_SEARCH_TERMS)
-    videos = get_videos(query)
+    try:
+        SAFE_SEARCH_TERMS = ['kids science', 'animal education for kid', 'kids art', 'english for teens', 'maths for teens']
+        query = random.choice(SAFE_SEARCH_TERMS)
+        videos = get_videos(query)
+    except Exception:
+        return render_template('500.html')
     return render_template('index.html', videos=videos)

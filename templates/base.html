@@ -15,7 +15,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="/static/js/index.js"></script>
-    <!-- <script src="/static/js/validate_form.js"></script> -->
+    <script src="/static/js/validate_form.js"></script>
     <title>{% block title %}Edukid{% endblock %}</title>
     {% endblock %}
 </head>
@@ -31,7 +31,7 @@
                 <p class="mb-0 mt-3 fw-semibold fs-5">EDUKID</p> 
             </div>
             <button class="search-toggle ms-auto">
-                <i class='bx bx-search fs-3'></i>
+                <i class='bx bx-search fs-2'></i>
             </button>
             <form method="post" action="{{ url_for('web_routes.search') }}" id="search-form" class="form-sm my-2 my-lg-2 ml-auto d-md-flex">
                 <input class="form-control me-2" type="search" id="search-query" name="search" placeholder="Search video" aria-label="Search">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <form method="post" action="{{ url_for('web_routes.search') }}" id="search-form" class="form-sm my-2 my-lg-2 ml-auto d-md-none form-inline container">
-            <input id="search-query" class="form-control me-2" type="search" name="search video" placeholder="Search" aria-label="Search">
+            <input id="search-query" class="form-control me-2" type="search" name="search" placeholder="Search video" aria-label="Search">
             <button id="search-button" class="my-btn" type="submit">Search</button>
         </form>
         {% endblock %}
@@ -63,9 +63,18 @@
     <!-- Sidebar -->
     {% block nav1 %}
     <div class="sidebar d-none d-md-block">
-        <a class="nav-link" href="{{ url_for('web_routes.index') }}">Home</a>
-        <a class="nav-link" href="{{ url_for('web_routes.saved_videos') }}">Saved videos</a>
-        <a class="nav-link" href="#">History</a>
+        <a class="nav-link" href="{{ url_for('web_routes.index') }}">
+            <i class='bx bx-home-smile fs-2 mb-6' ></i>
+            <p class="fw-bold fs-6 mt-0 mb-0">Home</p>
+        </a>
+        <a class="nav-link" href="{{ url_for('web_routes.saved_videos') }}">
+            <i class='bx bx-save fs-2'></i>
+            <p class="fw-bold fs-6 mt-0 mb-0">Saved</p>
+        </a>
+        <a class="nav-link" href="#">
+            <i class='bx bx-history fs-2' ></i>
+            <p class="fw-bold fs-6 mt-0 mb-0">History</p>
+        </a>
     </div>
     {% endblock %}
 
@@ -97,9 +106,18 @@
      <!-- Sidebar for mobile -->
      {% block nav2 %}
      <div class="navbar d-md-none sidebar-bottom">
-         <a class="nav-link" href="{{ url_for('web_routes.index') }}">Home</a>
-         <a class="nav-link" href="{{ url_for('web_routes.saved_videos') }}">Saved videos</a>
-         <a class="nav-link" href="#">History</a>
+         <a class="nav-link" href="{{ url_for('web_routes.index') }}">
+            <i class='bx bx-home-smile fs-2 mb-0' ></i>
+            <p class="fw-medium fs-6 mt-0 mb-0">Home</p>
+        </a>
+         <a class="nav-link" href="{{ url_for('web_routes.saved_videos') }}">
+            <i class='bx bx-save fs-2 mb-0'></i>
+            <p class="fw-medium fs-6 mt-0 mb-0">Saved</p>
+        </a>
+         <a class="nav-link" href="#">
+            <i class='bx bx-history fs-2 mb-0' ></i>
+            <p class="fw-medium fs-6 mt-0 mb-0">History</p>
+        </a>
      </div>
      {% endblock %}
     {% endblock %}
