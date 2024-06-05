@@ -10,7 +10,9 @@ def index():
     """ render the home page """
     import random
     try:
-        SAFE_SEARCH_TERMS = ['kids science', 'animal education for kid', 'kids art', 'english for teens', 'maths for teens']
+        SAFE_SEARCH_TERMS = ['kids science', 'animal education for kid',
+                             'kids art', 'english for teens',
+                             'maths for teens']
         query = random.choice(SAFE_SEARCH_TERMS)
         videos = get_videos(query)
     except Exception:

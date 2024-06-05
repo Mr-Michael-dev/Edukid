@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-""" route for viewing saved video and saving video"""
+""" route for viewing profile"""
 from flask import render_template
 from models.saved_videos import SavedVideos
 from web_routes import web_routes
 from flask_login import login_required, current_user
 from models import storage
+
 
 @web_routes.route('/profile')
 @login_required
@@ -15,5 +16,6 @@ def user_profile():
         'username': current_user.username
     }
 
-    saved_videos = storage._DBStorage__session.query(SavedVideos).filter_by(user_id=current_user.id).all()
+    saved_videos = storage._DBStorage__session.query(SavedVideos).filter_by(
+        user_id=current_user.id).all()
     return render_template('profile.html', user=user, videos=saved_videos)
