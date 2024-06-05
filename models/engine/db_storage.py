@@ -3,7 +3,7 @@
 Contains the class DBStorage
 """
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 from models.base_model import Base
 import models
@@ -56,17 +56,22 @@ class DBStorage:
         """commit all changes of the current database session"""
         try:
             self.__session.commit()
-        except:
+        except Exception:
             self.__session.rollback()
             raise
+
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
         if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):
-        """reloads data from the database"""
-        Base.metadata.create_all(self.__engine)
+        """Reloads data from the database."""
+        inspector = inspect(self.__engine)
+        for table in Base.metadata.tables.values():
+            if not inspector.has_table(table.name):
+                table.create(self.__engine)
+
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
         self.__session = Session
