@@ -19,7 +19,7 @@ class TestSavedVideos(unittest.TestCase):
         self.assertTrue(hasattr(saved_videos, "id"))
         self.assertTrue(hasattr(saved_videos, "created_at"))
         self.assertTrue(hasattr(saved_videos, "updated_at"))
-        self.assertTrue(hasattr(saved_videos, "description"))
+        self.assertTrue(hasattr(saved_videos, "thumbnail"))
 
     def test_user_id_attr(self):
         """Test that SavedVideos has attr user_id, and it's an empty string"""
@@ -61,14 +61,14 @@ class TestSavedVideos(unittest.TestCase):
 
     def test_description_attr(self):
         """
-        Test that SavedVideos has attr description, and it's an empty string
+        Test that SavedVideos has attr thumbnail, and it's an empty string
         """
         saved_videos = SavedVideos()
-        self.assertTrue(hasattr(saved_videos, "description"))
+        self.assertTrue(hasattr(saved_videos, "thumbnail"))
         if models.storage_t == 'db':
-            self.assertEqual(saved_videos.description, None)
+            self.assertEqual(saved_videos.thumbnail, None)
         else:
-            self.assertEqual(saved_videos.description, "")
+            self.assertEqual(saved_videos.thumbnail, "")
 
     def test_to_dict_creates_dict(self):
         """test to_dict method creates a dictionary with proper attrs"""
