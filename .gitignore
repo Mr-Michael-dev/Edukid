@@ -1,2 +1,4 @@
 # ignore the file containing my api key
 gapikey
+
+__pycache__

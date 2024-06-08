@@ -141,7 +141,7 @@ body {
         display: none;
     }
     .sidebar-bottom {
-        display: none;
+        display: flex;
     }
     .sidebar-bottom a {
         display: block;
