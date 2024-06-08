@@ -14,6 +14,7 @@ Edukid is designed to make learning engaging and fun for kids. It features engag
 9. [Contact](#contact)
 
 ## Introduction
+
 EduKid is a web application aimed at providing educational content for children in a fun and interactive way. This project was born from the struggle to find educational video content suitable for children and teenagers without exposing them to adult materials.
 ---
 The project is still in its development phase, although MVP has been deployed.
@@ -85,8 +86,8 @@ Visit `http://127.0.0.1:5000` in your browser to access the application.
 
 ## Areas for improvement
 1. User profile editing
-- update profile image
-- edit name
+    - update profile image
+    - edit name
 2. User ability to delete saved video
 3. Watch history
 4. improve on filtered search functionality
